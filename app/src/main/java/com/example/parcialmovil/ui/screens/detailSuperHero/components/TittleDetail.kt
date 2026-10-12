@@ -1,6 +1,6 @@
 package com.example.parcialmovil.ui.screens.detailSuperHero.components
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -18,6 +18,7 @@ fun TittleDetail(
         text = titleDetail,
         fontSize = 29.sp,
         modifier = modifier.padding(16.dp),
-        color = textoPrincipal
+        color = textoPrincipal,
+        fontWeight = FontWeight.Bold
     )
 }

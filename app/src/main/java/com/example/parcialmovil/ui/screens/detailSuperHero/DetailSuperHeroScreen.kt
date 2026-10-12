@@ -14,14 +14,31 @@ import androidx.compose.ui.Alignment
 import com.example.parcialmovil.ui.screens.detailSuperHero.components.TittleDetail
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
+import com.example.parcialmovil.ui.screens.detailSuperHero.components.CardInfoSuperHero
+import com.example.parcialmovil.ui.screens.detailSuperHero.components.CardPowerstats
+import com.example.parcialmovil.ui.screens.detailSuperHero.components.StatisticsTitle
+import com.example.parcialmovil.data.dataClassScreens.StatisticsInfo
+import com.example.parcialmovil.data.dataClassScreens.InfoSuperHero
+import com.example.parcialmovil.ui.screens.detailSuperHero.components.CardAppearance
+import com.example.parcialmovil.data.dataClassScreens.InfoAppearance
+import com.example.parcialmovil.ui.screens.detailSuperHero.components.TitleAppearence
+
 
 @Composable
 fun DetailSuperHeroContent(
+    statistics: String,
+    //info super heroe
+    infoSuperHero: InfoSuperHero,
+
     titleDetail: String,
+    //info estadisticas
+    statisticsInfo: StatisticsInfo,
+
+    infoAppearance: InfoAppearance,
+    //boton de atras
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -31,9 +48,9 @@ fun DetailSuperHeroContent(
         Column(
             modifier = Modifier.align(Alignment.TopStart)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+            horizontalAlignment = Alignment.CenterHorizontally,
 
+        ) {
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -53,15 +70,27 @@ fun DetailSuperHeroContent(
             Spacer(modifier = Modifier.padding(16.dp))
 
             //corregir color, separar en composables y enviar los parametros
-            Row() {
-                Text(text = "Nombre: Spiderman")
-                Text(text = "Nombre: Spiderman")
-                Text(text = "Nombre: Spiderman")
+            Column() {
+                CardInfoSuperHero(
+                    infoSuperHero = infoSuperHero
+                )
             }
 
-            //tarjeta para estaditicas
+            StatisticsTitle(
+                statistics = statistics
+            )
+
+            CardPowerstats(
+                statisticsInfo = statisticsInfo
+            )
+
+            TitleAppearence()
+
 
             //tarjeta para apariencia del superherore
+            CardAppearance(
+                infoAppearance = infoAppearance
+            )
 
         }
 
@@ -69,11 +98,15 @@ fun DetailSuperHeroContent(
 
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun DetailSuperHeroContentPreview() {
     DetailSuperHeroContent(
-        titleDetail = "Detalle del superHeroe",
+        statistics = "Estadísticas",
+        infoSuperHero = previewInfoSuperHero,
+        titleDetail = "Detalle del Superhéroe",
+        statisticsInfo = previewStatistics,
+        infoAppearance = previewAppearance,
         onBackClick = {}
     )
 }
@@ -81,17 +114,60 @@ fun DetailSuperHeroContentPreview() {
 
 @Composable
 fun DetailSuperHeroScreen(
+    infoSuperHero: InfoSuperHero,
+    statisticsInfo: StatisticsInfo,
+    onBackClick: () -> Unit,
+    infoAppearance: InfoAppearance,
     modifier: Modifier = Modifier
 ) {
     DetailSuperHeroContent(
-        titleDetail = "Detalle del superHeroe",
-        onBackClick = {},
-        modifier = modifier)
+        infoAppearance = infoAppearance,
+        statistics = "Estadísticas",
+        infoSuperHero = infoSuperHero,
+        titleDetail = "Detalle del Superhéroe",
+        statisticsInfo = statisticsInfo,
+        onBackClick = onBackClick,
+        modifier = modifier
+    )
 }
 
+
+
+
+@Preview(showBackground = true)
 @Composable
-@Preview (showBackground = true)
 fun DetailSuperHeroScreenPreview() {
-    DetailSuperHeroScreen()
+    DetailSuperHeroScreen(
+        infoSuperHero = previewInfoSuperHero,
+        statisticsInfo = previewStatistics,
+        infoAppearance = previewAppearance,
+        onBackClick = {}
+    )
 }
 
+
+
+private val previewInfoSuperHero = InfoSuperHero(
+    id = 1,
+    nameSuperHero = "Spider-Man",
+    fullNameSuperHeroe = "Peter Parker",
+    publisherName = "Marvel Comics"
+)
+
+private val previewStatistics = StatisticsInfo(
+    intelligence = 90,
+    strength = 80,
+    speed = 75,
+    durability = 85,
+    power = 95,
+    combat = 70
+)
+
+private val previewAppearance = InfoAppearance(
+    gender = "Male",
+    race = "Human",
+    height = "178 cm",
+    weight = "75 kg",
+    eyeColor = "Brown",
+    hairColor = "Brown"
+)

@@ -12,10 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.example.parcialmovil.ui.screens.homeScreen.components.CardSuperHero
 import com.example.parcialmovil.ui.screens.homeScreen.components.TitleScreen
+import com.example.parcialmovil.data.dataClassScreens.InfoSuperHero
 
 
 @Composable
 fun SuperHeroContent(
+    infoSuperHero: InfoSuperHero,
     modifier: Modifier = Modifier
 ){
     Box(
@@ -34,9 +36,7 @@ fun SuperHeroContent(
             LazyColumn() {
                 items(9){
                     CardSuperHero(
-                        nameSuperHero = "Spiderman",
-                        fullNameSuperHeroe = "peter parker",
-                        publisherName = "Marvel comics"
+                        infoSuperHero = infoSuperHero
                     )
                 }
 
@@ -54,14 +54,25 @@ fun SuperHeroContent(
 
 @Composable
 fun SuperHeroScreen(
+    infoSuperHero: InfoSuperHero,
     modifier: Modifier = Modifier
 ) {
-    SuperHeroContent(modifier = modifier)
+    SuperHeroContent(
+        infoSuperHero = infoSuperHero ,
+        modifier = modifier
+    )
 }
 
 
 @Composable
 @Preview (showBackground = true)
 fun SuperHeroScreenPreview() {
-    SuperHeroScreen()
+    SuperHeroScreen(
+        infoSuperHero = InfoSuperHero(
+            id = 1,
+            nameSuperHero = "Spiderman",
+            fullNameSuperHeroe = "Peter Parker",
+            publisherName = "Marvel Comics"
+        )
+    )
 }

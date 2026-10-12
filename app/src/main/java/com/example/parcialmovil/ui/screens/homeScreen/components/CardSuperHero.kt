@@ -1,34 +1,23 @@
 package com.example.parcialmovil.ui.screens.homeScreen.components
 
-import androidx.compose.foundation.Image
-import com.example.parcialmovil.ui.theme.textoPrincipal
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.parcialmovil.R
-import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.fillMaxWidth
-import com.example.parcialmovil.ui.theme.colorBorde
 import com.example.parcialmovil.ui.theme.fondoTarjeta
 import androidx.compose.material3.CardDefaults
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.ui.layout.ContentScale
-
+import com.example.parcialmovil.ui.utils.FullNameSuperHero
+import com.example.parcialmovil.ui.utils.NameSuperHero
+import com.example.parcialmovil.ui.utils.PublisherSuperHero
+import com.example.parcialmovil.data.dataClassScreens.InfoSuperHero
 @Composable
 fun CardSuperHero(
-    nameSuperHero: String,
-    fullNameSuperHeroe: String,
-    publisherName: String,
+    infoSuperHero: InfoSuperHero,
     modifier: Modifier = Modifier
 ){
 
@@ -45,13 +34,13 @@ fun CardSuperHero(
             ImageHomeScreenHero()
             Column() {
                 NameSuperHero(
-                    nameSuperHero = nameSuperHero
+                    nameSuperHero = infoSuperHero.nameSuperHero
                 )
                 FullNameSuperHero(
-                    fullNameSuperHeroe = fullNameSuperHeroe
+                    fullNameSuperHeroe = infoSuperHero.fullNameSuperHeroe
                 )
                 PublisherSuperHero(
-                    publisherName = publisherName
+                    publisherName = infoSuperHero.publisherName
                 )
             }
 
@@ -60,12 +49,15 @@ fun CardSuperHero(
 }
 
 
-@Preview (showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun CardSuperHeroPreview() {
     CardSuperHero(
-        nameSuperHero = "Spiderman",
-        fullNameSuperHeroe = "peter parker",
-        publisherName = "Marvel comics"
+        infoSuperHero = InfoSuperHero(
+            id = 1,
+            nameSuperHero = "Spider-Man",
+            fullNameSuperHeroe = "Peter Parker",
+            publisherName = "Marvel Comics"
+        )
     )
 }
